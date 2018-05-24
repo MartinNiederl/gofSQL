@@ -38,6 +38,7 @@ func ParseLine(line string) ParsedLine {
 
 	if regexIgnore.MatchString(line) {
 		pLine.Type = lineIgnore
+		pLine.Value = ""
 		return pLine
 	}
 

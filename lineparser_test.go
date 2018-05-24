@@ -12,6 +12,7 @@ func TestParseLine(t *testing.T) {
 		{name: "Query", args: "SELECT * FROM simple;", want: ParsedLine{Type: lineQuery, Value: "SELECT * FROM simple;"}},
 		{name: "Comment", args: "-- just  a  comment :)", want: ParsedLine{Type: lineComment, Value: "-- just  a  comment :)"}},
 		{name: "Empty", args: " ", want: ParsedLine{Type: lineEmpty, Value: ""}},
+		{name: "Ignore", args: "-- ignore", want: ParsedLine{Type: lineIgnore, Value: ""}},
 	}
 
 	for _, tt := range tests {
