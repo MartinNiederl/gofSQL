@@ -22,3 +22,4 @@ modules.xml
 *.ipr
 .idea/vcs.xml
 .idea/watcherTasks.xml
+*.sql

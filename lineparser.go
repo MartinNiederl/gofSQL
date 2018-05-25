@@ -15,7 +15,7 @@ const (
 
 var (
 	regexTag     = regexp.MustCompile("^-- name: \\w+$")
-	regexComment = regexp.MustCompile("^.*--.*$")
+	regexComment = regexp.MustCompile("^--.*$")
 	regexIgnore  = regexp.MustCompile("^-- ignore$")
 )
 

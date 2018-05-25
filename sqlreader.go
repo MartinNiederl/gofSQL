@@ -52,8 +52,7 @@ func getQuery(part string, scanner *bufio.Scanner) string {
 	queryBuffer.WriteString(part + " ")
 
 	for scanner.Scan() {
-		line := scanner.Text()
-		parsedLine := ParseLine(line)
+		parsedLine := ParseLine(scanner.Text())
 
 		if parsedLine.Type == lineQuery {
 			queryBuffer.WriteString(parsedLine.Value)
