@@ -2,7 +2,7 @@ package gofSQL
 
 import "os"
 
-func ParseFile(path string) ([]Query, error) {
+func ParseFile(path string) (Queries, error) {
 	file, err := os.Open(path)
 	if err != nil {
 		return nil, err
@@ -10,5 +10,5 @@ func ParseFile(path string) ([]Query, error) {
 
 	defer file.Close()
 
-	return nil, nil
+	return parseReader(file)
 }
