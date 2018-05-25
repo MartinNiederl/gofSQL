@@ -23,3 +23,20 @@ func TestParseLine(t *testing.T) {
 		})
 	}
 }
+
+var parsedLine ParsedLine
+
+func benchmarkParseLine(line string, b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		parsedLine = ParseLine(line)
+	}
+}
+
+func BenchmarkParseLineTag(b *testing.B)     { benchmarkParseLine("-- name: sim_ple21te_st ", b) }
+func BenchmarkParseLineQuery(b *testing.B)   { benchmarkParseLine("SELECT * FROM simple;", b) }
+func BenchmarkParseLineComment(b *testing.B) { benchmarkParseLine("-- just  a  comment :)", b) }
+func BenchmarkParseLineEmpty(b *testing.B)   { benchmarkParseLine(" ", b) }
+func BenchmarkParseLineIgnore(b *testing.B)  { benchmarkParseLine("-- ignore", b) }
+func BenchmarkParseLineLongerQuery(b *testing.B) {
+	benchmarkParseLine("SELECT EMP_ID, LAST_NAME FROM EMPLOYEE_TBL WHERE CITY = 'INDIANAPOLIS' ORDER BY 2, 1;", b)
+}
