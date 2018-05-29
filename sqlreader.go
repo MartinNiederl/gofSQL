@@ -6,7 +6,21 @@ import (
 	"io"
 )
 
-type Query string
+const (
+	typeCreate QueryType = iota
+	typeInsert
+	typeQuery
+	typePrepare
+	typeUnset
+)
+
+type QueryType int
+
+type Query struct {
+	Value string
+	QType QueryType
+}
+
 type Tag string
 
 type Queries map[Tag]Query
@@ -39,7 +53,10 @@ func parseReader(reader io.Reader) (Queries, error) {
 		case lineQuery:
 			query := getQuery(parsedLine.Value, scanner)
 			if query != "" {
-				queries[currTag] = Query(query)
+				queries[currTag] = Query{
+					Value: query,
+					QType: typeUnset,
+				}
 			}
 		}
 	}
